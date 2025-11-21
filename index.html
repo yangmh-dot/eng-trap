@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <title>動物陷阱情節 Sora Prompt 產生器（超真實微爆點版）</title>
+  <title>動物陷阱情節 Sora Prompt 產生器（寫實穩定版）</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
@@ -158,9 +158,9 @@
 
 <body>
   <div class="container">
-    <h1>動物陷阱情節 Sora Prompt 產生器（超真實微爆點版）</h1>
+    <h1>動物陷阱情節 Sora Prompt 產生器（寫實穩定版）</h1>
     <div class="subtitle">
-      中文介面 · 英文 Prompt / 中文描述詞 / 雙語 · 無跳、不誇張、超寫實微爆點
+      中文介面 · 英文 Prompt / 中文描述詞 / 雙語 · 偏現實、不誇大、不特別強調 loop
     </div>
 
     <!-- 動物分類 -->
@@ -203,10 +203,10 @@
           <label>氛圍</label>
           <select id="moodSelect">
             <option value="">（隨機）</option>
-            <option value="tense and subtle">細微緊張感</option>
-            <option value="calm but cautious">冷靜但戒備</option>
-            <option value="natural documentary tone">自然紀錄片氛圍</option>
-            <option value="soft suspense">輕度懸疑感</option>
+            <option value="slightly tense but calm">略帶緊張但平靜</option>
+            <option value="calm and observational">冷靜、專注觀察</option>
+            <option value="natural and realistic documentary tone">自然寫實紀錄片感</option>
+            <option value="soft suspense without exaggeration">輕微懸疑、不誇張</option>
           </select>
         </div>
       </div>
@@ -220,26 +220,26 @@
           <label>鏡頭風格</label>
           <select id="cameraSelect">
             <option value="">（隨機）</option>
-            <option value="natural, steady close-up shots">自然穩定的近景</option>
-            <option value="gentle handheld motion with minimal shake">輕微手持、不晃動</option>
-            <option value="smooth tracking shot following the animal">平滑跟拍</option>
-            <option value="slight wide-angle showing trap and environment">輕度廣角、完整構圖</option>
+            <option value="natural, steady close-up shots">自然穩定的近景鏡頭</option>
+            <option value="gentle handheld motion with minimal shake">輕微手持、晃動很小</option>
+            <option value="smooth tracking shot following the animal">平滑跟拍動物</option>
+            <option value="simple wide shot showing the trap and environment">簡單廣角，清楚看到陷阱與環境</option>
           </select>
         </div>
         <div class="field">
           <label>畫面細節</label>
           <select id="detailSelect">
             <option value="">（隨機）</option>
-            <option value="natural lighting and realistic fur details">自然光 + 真實毛髮</option>
-            <option value="soft daylight with shallow depth of field">柔和日光 + 淺景深</option>
-            <option value="realistic environment textures and subtle shadows">真實場景材質 + 細陰影</option>
-            <option value="documentary-grade realism and color tone">紀錄片級真實色調</option>
+            <option value="natural lighting and realistic fur details">自然光線與真實毛髮細節</option>
+            <option value="soft daylight with shallow depth of field">柔和日光與淺景深</option>
+            <option value="realistic environment textures and subtle shadows">真實場景材質與柔和陰影</option>
+            <option value="documentary-like realistic color and contrast">紀錄片風格的真實色調與對比</option>
           </select>
         </div>
         <div class="field">
-          <label>影片格式</label>
+          <label>影片格式（描述用）</label>
           <select disabled>
-            <option>10 秒 · 9:16 · 無慢動作 · 可循環</option>
+            <option>10 秒 · 9:16 · 寫實、不誇張</option>
           </select>
         </div>
       </div>
@@ -271,7 +271,7 @@
       </div>
     </div>
 
-    <div class="footer-note">Made for GitHub Pages · 超真實微爆點版本</div>
+    <div class="footer-note">Made for GitHub Pages · 寫實穩定版（無誇張爆點、無強制 loop）</div>
   </div>
 
 <!-- ============================== -->
@@ -279,7 +279,6 @@
 <!-- ============================== -->
 
 <script>
-
 /* ===== 資料 ===== */
 
 const animalOptions = {
@@ -322,55 +321,21 @@ const sceneOptions = {
 
 const trapOptions = {
   ferocious: [
-    { value: "a quiet deep pit with rough wooden stakes", label: "安靜深坑 + 粗木樁" },
-    { value: "a fake ground that slowly sinks", label: "慢慢下沉的假地板" },
-    { value: "a hanging meat lure above a calm pit", label: "深坑上方吊肉誘餌" },
-    { value: "a rotating log trap with blunt stakes", label: "鈍木柱旋轉陷阱" },
-    { value: "a meat bait above a hollow tree stump", label: "空心樹樁上的肉誘餌" },
-    { value: "a wobbling wooden platform", label: "輕微晃動的木板" }
+    { value: "a simple deep pit with rough wooden stakes", label: "簡單深坑 + 粗木樁" },
+    { value: "a fake ground that slowly sinks when pressed", label: "踩上去會慢慢下沉的假地板" },
+    { value: "a hanging piece of meat above a quiet pit", label: "深坑上方吊著一塊肉" },
+    { value: "a basic rotating log trap with blunt stakes", label: "帶鈍木柱的旋轉原木陷阱" },
+    { value: "meat tied above a hollow tree stump", label: "空心樹樁上方綁著肉" },
+    { value: "a slightly wobbly wooden board over a shallow hole", label: "架在淺坑上、會輕微晃動的木板" }
   ],
   pet: [
-    { value: "a small cardboard box with cheese", label: "小紙箱 + 起司" },
-    { value: "a slightly wobbly cardboard platform", label: "輕微晃動紙板 + 起司" },
-    { value: "cheese placed beside a small wall hole", label: "小洞旁的起司" },
-    { value: "a transparent cup held by a string with cheese", label: "透明杯陷阱 + 繩子 + 起司" },
-    { value: "a shallow toy pit with cheese", label: "淺玩具坑 + 起司" },
-    { value: "cheese on a gently swinging string", label: "輕微晃動的繩子起司" }
+    { value: "a small cardboard box with cheese placed under it", label: "紙箱底下放起司的小陷阱" },
+    { value: "a slightly wobbly piece of cardboard with cheese on top", label: "放起司的紙板，踩上去會輕微晃動" },
+    { value: "a piece of cheese placed beside a small wall hole", label: "牆角小洞旁的起司" },
+    { value: "a transparent cup propped up by a stick with cheese inside", label: "透明杯用小棍撐起，裡面有起司" },
+    { value: "a shallow toy-like pit with cheese in the center", label: "淺淺的玩具坑中間放起司" },
+    { value: "a piece of cheese tied to a gently swinging string", label: "綁在輕微晃動繩子上的起司" }
   ]
-};
-
-/* ===== 超真實微爆點（重點版） ===== */
-
-const highlightOptions = {
-  ferocious: {
-    en: [
-      "A very small creaking sound comes from the trap, making the animal pause for a moment, its ears gently turning toward the sound.",
-      "A few grains of dirt slide slowly down the edge of the pit, and the animal subtly shifts its weight back a little while staying calm.",
-      "The hanging meat sways just a few centimeters more, passing softly near the animal's whiskers, making it blink once naturally.",
-      "The wooden surface under the paw flexes slightly, making the animal stop mid-step to carefully test the ground."
-    ],
-    zh: [
-      "陷阱裡傳來非常輕微的吱呀聲，牠瞬間停住一秒，耳朵輕輕轉向聲音方向。",
-      "深坑邊緣有幾粒細沙慢慢滑落，牠只是把重心自然往後移一點點，動作很小。",
-      "吊著的肉只輕輕晃過牠的鬍鬚附近，牠眨了一次眼，微微縮一下頭。",
-      "牠踩著的木板非常輕微地下沉一點，牠停住不再往前，像是在確認地面感覺。"
-    ]
-  },
-
-  pet: {
-    en: [
-      "The cardboard box lifts a tiny bit and slowly settles, and the animal gently leans its head back while still watching the cheese.",
-      "The transparent cup wobbles softly with a small tapping sound, and the animal calmly takes a half-step back.",
-      "The cheese lightly brushes the animal's whiskers, making it blink once before continuing to observe.",
-      "A small piece of dust falls from the trap, and the animal freezes briefly, then slowly moves its nose closer again."
-    ],
-    zh: [
-      "紙箱前緣微微抬起一點點又落回，牠只是把頭輕輕往後傾一下。",
-      "透明杯輕輕晃動發出小小聲音，牠自然地往後退半步，但視線沒離開。",
-      "起司非常輕微地擦過牠的鬍鬚，牠眨一下眼，頭微微往後縮。",
-      "陷阱上掉下一小片灰塵，牠愣住一瞬間，接著又慢慢靠近。"
-    ]
-  }
 };
 
 /* ===== 工具 ===== */
@@ -386,23 +351,27 @@ function getType() {
 function ensureValue(sel) {
   if (sel.value) return sel.value;
   const ops = [...sel.options].filter(o => o.value);
-  return randomFromArray(ops).value;
+  return ops.length ? randomFromArray(ops).value : "";
 }
+
 function ensureLabel(sel) {
-  if (sel.value) return sel.options[sel.selectedIndex].textContent;
+  if (sel.value) {
+    return sel.options[sel.selectedIndex].textContent;
+  }
   const ops = [...sel.options].filter(o => o.value);
-  return randomFromArray(ops).textContent;
+  return ops.length ? randomFromArray(ops).textContent : "";
 }
 
 function getAnimal() {
   const type = getType();
   const key = document.getElementById("animalSelect").value;
-  const list = animalOptions[type];
+  const list = animalOptions[type] || [];
+  if (!list.length) return { en: "", label: "" };
   if (!key) return randomFromArray(list);
   return list.find(x => x.key === key) || randomFromArray(list);
 }
 
-/* ===== 英文 Prompt ===== */
+/* ===== 英文 Prompt：正常寫實版 ===== */
 
 function buildEn() {
   const type = getType();
@@ -417,21 +386,18 @@ function buildEn() {
   const bait = type === "ferocious" ? "a piece of meat" : "a piece of cheese";
   const style = type === "ferocious"
     ? "a cautious wild predator"
-    : "a small domestic animal showing natural curiosity";
-
-  const h = randomFromArray(highlightOptions[type].en);
+    : "a small domestic animal with natural curiosity";
 
   return `
-A 10-second 9:16 ultra-realistic video of ${ani.en} in ${scene}, approaching ${bait} placed as part of ${trap}.
-The animal behaves as ${style}, making small, natural movements without exaggeration.
-${h}
-Camera style: ${cam}. Visual detail: ${detail}. Mood: ${mood}.
-No slow motion, no exaggerated reactions, no slapstick. Natural realtime behavior only.
-Designed as a seamless loop matching first and last frames.
+A 10-second 9:16 realistic video of ${ani.en} in ${scene}.
+The animal slowly approaches ${trap}, attracted by ${bait}. It pauses to look, sniffs gently, and makes small, careful movements with its paw or nose to test the area near the bait.
+Its behavior is ${style}, with subtle, natural reactions and no exaggerated or cartoon-like motions.
+Camera style: ${cam}. Visual detail: ${detail}. Overall mood: ${mood}.
+Shot in realtime with normal speed and simple, natural movement.
   `.trim();
 }
 
-/* ===== 中文描述詞 ===== */
+/* ===== 中文描述詞：正常寫實版 ===== */
 
 function buildZh() {
   const type = getType();
@@ -439,71 +405,67 @@ function buildZh() {
 
   const scene = ensureLabel(sceneSelect);
   const trap = ensureLabel(trapSelect);
-  const mood = ensureLabel(moodSelect) || "自然的輕微緊張感";
-  const cam = ensureLabel(cameraSelect) || "自然穩定鏡頭";
+  const mood = ensureLabel(moodSelect) || "自然、稍微緊張的氛圍";
+  const cam = ensureLabel(cameraSelect) || "穩定、自然的鏡頭運動";
   const detail = ensureLabel(detailSelect) || "真實光線與毛髮細節";
-
-  const h = randomFromArray(highlightOptions[type].zh);
 
   if (type === "ferocious") {
     return `
-一段 10 秒、9:16 的超真實影片。
-場景位於${scene}，畫面呈現${detail}，整體是自然紀錄片風格。
+一段 10 秒、9:16 的寫實風格影片。
+場景在${scene}，畫面呈現${detail}，整體氛圍偏向自然紀錄片。
 
-一隻${ani.label}慢慢接近陷阱（${trap}），動作非常真實且克制。
-牠先停下觀察，耳朵微微轉動，鼻子輕輕嗅聞。
+一隻${ani.label}慢慢靠近一個簡單的陷阱（${trap}），被上面的肉誘餌吸引。
+牠停下來觀察幾秒鐘，耳朵和眼睛在周圍掃視，鼻子輕輕嗅聞空氣和氣味。
 
-${h}
+接著牠用前腳或鼻子，小幅度、慢慢地去碰近誘餌附近的區域，
+動作看起來謹慎、真實，不誇張、不做誇大反應，也不跳躍、翻滾。
 
-牠的反應很自然，不誇張：可能只是退半小步、輕微縮一下頭，或再次確認地面感覺。
-鏡頭以${cam}為主，氛圍是${mood}。
-
-結尾畫面回到接近開頭的位置，可無縫循環播放。
+整支影片的鏡頭以${cam}為主，沒有誇張的運鏡或特效，
+整體調性偏${mood}，讓畫面像真實拍攝的野外觀察片段。
     `.trim();
   }
 
   return `
-一段 10 秒、9:16 的超真實家庭風格影片。
-場景在${scene}，光線自然、細節呈現${detail}。
+一段 10 秒、9:16 的寫實家庭風格影片。
+場景在${scene}，畫面呈現${detail}，感覺像日常生活中隨手拍下的片段。
 
-一隻${ani.label}慢慢接近起司陷阱（${trap}），牠的動作是真實的、輕微的、帶有好奇心。
-牠先停住聞一聞，耳朵輕輕抖動。
+畫面中有一個簡單的小陷阱（${trap}），裡面或附近放著起司。
+一隻${ani.label}慢慢走近，停在陷阱附近，先用鼻子聞一聞，再用眼睛仔細看。
 
-${h}
+牠偶爾用前腳或鼻子輕輕碰一下起司或陷阱邊緣，
+反應是很小的動作，例如稍微退半步、眨一下眼或把頭微微往後縮，
+整體看起來自然、不搞笑、不誇張，也不卡通化。
 
-牠的反應是真實的微小動作：眨一下眼、往後退半步、頭縮一點點，不誇張、不卡通化。
-鏡頭以${cam}為主，氛圍為${mood}。
-
-最後一秒構圖類似開頭，可做成循環短片。
+鏡頭以${cam}為主，整體氛圍${mood}，
+就像真實生活中對動物小心探索陷阱的紀錄畫面。
   `.trim();
 }
 
-/* ===== 初始化 ===== */
+/* ===== 初始化 & 綁定 ===== */
 
 function populate(type) {
   animalSelect.innerHTML = "<option value=''>（隨機）</option>";
   sceneSelect.innerHTML = "<option value=''>（隨機）</option>";
   trapSelect.innerHTML = "<option value=''>（隨機）</option>";
 
-  animalOptions[type].forEach(a=>{
+  (animalOptions[type] || []).forEach(a=>{
     animalSelect.innerHTML += `<option value="${a.key}">${a.label}</option>`;
   });
-  sceneOptions[type].forEach(s=>{
+  (sceneOptions[type] || []).forEach(s=>{
     sceneSelect.innerHTML += `<option value="${s.value}">${s.label}</option>`;
   });
-  trapOptions[type].forEach(t=>{
+  (trapOptions[type] || []).forEach(t=>{
     trapSelect.innerHTML += `<option value="${t.value}">${t.label}</option>`;
   });
 }
 
-/* ===== 綁定 ===== */
-
 animalTypeGroup.addEventListener("change", ()=>{
+  const type = getType();
   document.querySelectorAll(".radio-pill").forEach(p=>{
     const i = p.querySelector("input");
     p.classList.toggle("active", i.checked);
   });
-  populate(getType());
+  populate(type);
 });
 
 randomBtn.addEventListener("click", ()=>{
@@ -537,19 +499,17 @@ generateBtn.addEventListener("click", ()=>{
 
 copyBtn.addEventListener("click", async ()=>{
   const txt = promptOutput.value.trim();
-  if (!txt) return alert("沒有內容！");
+  if (!txt) return alert("目前沒有內容，可以先產生描述。");
   try {
     await navigator.clipboard.writeText(txt);
-    alert("已複製！");
+    alert("已複製內容。");
   } catch(e){
-    alert("複製失敗，請手動複製");
+    alert("瀏覽器無法自動複製，請手動選取文字。");
   }
 });
 
-/* ===== 啟動 ===== */
-
+/* 啟動預設：凶猛動物 */
 populate("ferocious");
-
 </script>
 
 </body>
